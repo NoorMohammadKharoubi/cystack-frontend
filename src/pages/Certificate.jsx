@@ -5,6 +5,7 @@ import BootstrapSwitchButton from "bootstrap-switch-button-react";
 import Logo from "./../components/Logo";
 import SearchInput from "./../components/SearchInput";
 import { useSearchParams, Link } from "react-router-dom";
+import Table from "react-bootstrap/Table";
 
 function Certificate(props) {
   const [data, setData] = useState([]);
@@ -68,29 +69,29 @@ function Certificate(props) {
         handleClose={handleClose}
       />
 
-      <table className="table table-striped">
+      <Table responsive striped hover>
         <thead>
           <tr>
-            <th scope="col">crt.sh ID</th>
-            <th scope="col"> Logged At ⇧</th>
-            <th scope="col">Not Before</th>
-            <th scope="col">Not After</th>
-            <th scope="col">Common Name</th>
-            <th scope="col">Matching Identities</th>
-            <th scope="col">Issuer Name</th>
-            <th scope="col">Get Notification</th>
+            <th>crt.sh ID</th>
+            <th>Logged At</th>
+            <th>Not Before</th>
+            <th>Not After</th>
+            <th>Common Name</th>
+            <th>Matching Identities</th>
+            <th>Issuer Name</th>
+            <th>Get Notification</th>
           </tr>
         </thead>
         <tbody>
           {data.map((item) => (
             <tr>
-              <th scope="row">{item.issuer_ca_id}</th>
+              <th>{item.issuer_ca_id}</th>
               <td>{item.entry_timestamp}</td>
               <td>{item.not_before}</td>
               <td>{item.not_after}</td>
               <td>{item.common_name}</td>
               <td>{item.name_value}</td>
-              <td>{item.issuer_name}</td>
+              <td className="overflow col-md-2">{item.issuer_name}</td>
               <td>
                 <button
                   type="button"
@@ -106,7 +107,7 @@ function Certificate(props) {
             </tr>
           ))}
         </tbody>
-      </table>
+      </Table>
     </>
   );
 }
